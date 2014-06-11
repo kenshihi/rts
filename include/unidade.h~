@@ -68,7 +68,7 @@ defesa da unidade sendo atacada. Retorna um float*/
 float dano_real(float atk, float def, int tipo_atacker, int tipo_defender);
 
 /*Funcao de movimentacao. Recebe posicao X Y da unidade e sua velocidade. Os valores de X e Y serao atualizados por ponteiro*/
-void move(char direcao, Unidade *uni);
+void move(char direcao, *Unidade uni);
 
 /*Funcao de minning de resource. Recebe o resource do jogador como ponteiro, a vida da mina e o ataque da unidade, que
 eh a taxa de mineracao*/

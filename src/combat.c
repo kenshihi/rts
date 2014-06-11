@@ -8,11 +8,11 @@ float dano_real(float atk, float def, int tipo_atacker, int tipo_defender){
 	else return result;
 }
 
-void move(char direcao,int *x, int *y, float velocidade){
-	if(direcao == 'w'||'W') *y = *y - velocidade;
-	if(direcao == 's'||'S') *y = *y + velocidade;
-	if(direcao == 'a'||'A' ) *x = *x - velocidade;
-	if(direcao == 'd'||'D') *x = *x + velocidade;
+void move(char direcao, Unidade *uni){
+	if(direcao == 'w'||'W') uni->y = uni->y - uni->velocidade;
+	if(direcao == 's'||'S') uni->y = uni->y + uni->velocidade;
+	if(direcao == 'a'||'A' ) uni->x = uni->x - uni->velocidade;
+	if(direcao == 'd'||'D') uni->x = uni->x + uni->velocidade;
 }
 
 void mine(int *resource, float *vida_mina, float atk){
@@ -35,4 +35,20 @@ int verifica_gera(int gold_cost, int food_cost ,int *gold, int *food){
 
 void come(int *food, Unidade uni){
 	*food = *food - uni.consome;
+}
+
+char move_calc(Unidade uni, int x, int y){
+	int xr, yr;
+	char direction;
+	xr = uni.x/x;
+	yr = uni.y/y;
+	if(yr > 1) direction = 'w';
+	else if(yr == 1){
+		if(xr > 1) direction = 'a';
+		else if(xr == 1) direction = NULL;
+		else if(xr < 1) direction = 'd';
+	}
+	else if(yr < 1) direction = 's';
+
+	return direction;
 }
